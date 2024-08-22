@@ -1,7 +1,6 @@
 package bgergo.applications.taskmanager.task;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity

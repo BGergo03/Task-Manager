@@ -1,9 +1,8 @@
 package bgergo.applications.taskmanager.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -20,6 +19,21 @@ public class TaskController {
     @GetMapping
     public List<Task> getTasks() {
         return taskService.getTasks();
+    }
+
+    @PostMapping
+    public void addTask(@RequestBody Task task) {
+        taskService.addTask(task);
+    }
+
+    @DeleteMapping(path = "{taskId}")
+    public void deleteTask(@PathVariable("taskId") Long id) {
+        taskService.deleteTask(id);
+    }
+
+    @PutMapping(path = "{taskId}")
+    public void updateTask(@PathVariable("taskId") Long id, @RequestParam(required = false) String name) {
+        taskService.updateTask(id, name);
     }
 
 }
